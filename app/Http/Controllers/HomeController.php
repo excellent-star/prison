@@ -13,6 +13,9 @@ class HomeController extends Controller
 
       public function index(Request $request){
 
+        // $decrypted = Crypt::encryptString(123456);
+        // return $decrypted;
+
 
         if($request->session()->has('loggedUserId')){
 
@@ -47,6 +50,9 @@ class HomeController extends Controller
       }
 
       public function login(Request $request){
+
+
+
 
 
         $validated = $request->validate([

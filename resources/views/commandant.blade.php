@@ -1,7 +1,7 @@
 @extends('layout')
 
 
-@section('page_title','dashboard')
+@section('page_title','Commandant')
 @section('content')
 <div class="row" id="proBanner">
     <div class="col-12">

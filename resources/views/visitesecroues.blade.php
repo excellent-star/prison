@@ -1,7 +1,7 @@
 @extends('layout')
 
 
-@section('page_title','visites-personnels')
+@section('page_title','visites-ecroues')
 @section('content')
 <div class="row" id="proBanner">
     <div class="col-12">
@@ -16,7 +16,7 @@
   <div class="container-scroller">
 
    @include('header')
-   @include('underheader',['page'=>'Visite de Personnels'])
+   @include('underheader',['page'=>'Visite Ecroues'])
 
 
    @if(Session::get('loggedname'))
@@ -55,7 +55,7 @@
                       </div>
                       <div class="card-body">
 
-                                <form action="#" method="POST" id="visite_personnel_form_id">
+                                <form action="#" method="POST" id="visite_ecroue_form_id">
 
                                     @csrf
 
@@ -81,7 +81,7 @@
 
                                             <div id="form-group">
                                                 <label for="contact_visiteur">Contact visiteur</label>
-                                                <input name="contact_visiteur" type="text" class="form-control" id="contact_visiteur" placeholder="Contact du visiteur" required>
+                                                <input name="contact_visiteur" type="tel" class="form-control" id="contact_visiteur" placeholder="Contact du visiteur" required>
                                             </div>
                                      </div>
 
@@ -93,15 +93,15 @@
 
                                            <div id="form-group">
                                                <label for="quartier_visiteur">Quartier de résidence</label>
-                                               <input name="quartier_visiteur" type="text" class="form-control" id="quartier_visiteur" placeholder="Quartier visiteur" required>
+                                               <input name="quartier_visiteur" type="text" class="form-control" id="quartier_visiteur" placeholder="Quartier de résidence" required>
                                            </div>
 
                                     </div>
                                     <div class="col-sm-4">
 
                                            <div id="form-group">
-                                               <label for="lien_avec_visite">Lien avec le visité</label>
-                                               <input name="lien_avec_visite" type="text" class="form-control" id="lien_avec_visite" placeholder="Lien avec le visité" required>
+                                               <label for="lien_avec_visite">Lien avec l’écroue</label>
+                                               <input name="lien_avec_visite" type="text" class="form-control" id="lien_avec_visite" placeholder="Lien avec l’écroue" required>
                                            </div>
                                     </div>
 
@@ -121,15 +121,15 @@
 
                                         <div id="form-group">
                                             <label for="type_piece">Type de pièce</label>
-                                            <input name="type_piece" type="text" class="form-control" id="type_piece" placeholder="type de pièce" required>
+                                            <input name="type_piece" type="text" class="form-control" id="type_piece" placeholder="Type de pièce" required>
                                         </div>
 
                                     </div>
                                     <div class="col-sm-4">
 
                                         <div id="form-group">
-                                            <label for="fonction_visteur">Fonction du visiteur (optionel)</label>
-                                            <input name="fonction_visteur" type="text" class="form-control" id="fonction_visteur" placeholder="Fonction du visiteur">
+                                            <label for="fonction_visiteur">Fonction du visiteur (optionel)</label>
+                                            <input name="fonction_visiteur" type="text" class="form-control" id="fonction_visiteur" placeholder="Fonction du visiteur (optionel)" required>
                                         </div>
                                     </div>
 
@@ -149,31 +149,24 @@
                                 <div class="col-sm-4">
 
                                     <div id="form-group">
-                                        <label for="nom_visite">Nom du visité</label>
-                                        <input name="nom_visite" type="text" class="form-control" id="nom_visite" placeholder="Nom du visité" required>
+                                        <label for="nom_visite">Nom de l’écroue</label>
+                                        <input name="nom_visite" type="text" class="form-control" id="nom_visite" placeholder="Nom de l’écroue" required>
                                     </div>
 
                                 </div>
                                 <div class="col-sm-4">
 
                                     <div id="form-group">
-                                        <label for="prenom_visite">Prénom du visité</label>
-                                        <input name="prenom_visite" type="text" class="form-control" id="prenom_visite" placeholder="Prénom du visité" required>
+                                        <label for="prenom_visite">Prénom de l’écroue</label>
+                                        <input name="prenom_visite" type="text" class="form-control" id="prenom_visite" placeholder="Prénom de l’écroue" required>
                                     </div>
                                 </div>
 
                                 <div class="col-sm-4">
 
                                 <div id="form-group">
-                                    <label for="direction_visite">Direction du visité</label>
-                                    <select name="direction_visite" id="direction_visite" class="form-control">
-
-                                               @foreach ($directions as $direction )
-
-                                                 <option value="{{ $direction->id }}">{{ $direction->name }}</option>
-
-                                               @endforeach
-                                    </select>
+                                    <label for="quartier_ecroue">Quartier de l’écroue</label>
+                                    <input name="quartier_ecroue" type="text" class="form-control" id="quartier_ecroue" placeholder="Quartier de l’écroue" required>
                                 </div>
                             </div>
 
@@ -181,51 +174,29 @@
 
                             <div class="row">
 
+
                                         <div class="col-sm-4">
 
                                             <div id="form-group">
-                                                <label for="service_visite">Service du visité</label>
-                                                <select name="service_visite" class="form-control" id="service_visite">
-                                                    <option value="4">service 4</option>
-                                                    <option value="5">service 5</option>
-                                                </select>
+                                                <label for="heure_entree">Heure d entrée</label>
+                                                <input name="heure_entree" type="text" class="form-control" id="heure_entree" placeholder="Heure d entrée" required>
                                             </div>
+                                       </div>
 
-                                        </div>
-                                        <div class="col-sm-4">
-
-                                            <div id="form-group">
-                                                <label for="grade_visite">Grade du visité</label>
-                                                <input name="grade_visite" type="text" class="form-control" id="grade_visite" placeholder="Grade du visité" required>
-                                            </div>
-
-                                        </div>
-
-                                        <div class="col-sm-4">
+                                       <div class="col-sm-4">
 
                                         <div id="form-group">
-                                            <label for="heure_entree">Heure d entrée</label>
-                                            <input name="heure_entree" type="text" class="form-control" id="heure_entree" placeholder="Heure d entrée" required>
+                                            <label for="heure_sortie">Heure de sortie</label>
+                                            <input name="heure_sortie" type="text" class="form-control" id="heure_sortie" placeholder="Heure de sortie" required>
                                         </div>
+
                                     </div>
+
+
 
                                </div>
 
-                               <div class="row">
 
-                                        <div class="col-sm-4">
-
-                                            <div id="form-group">
-                                                <label for="heure_sortie">Heure de sortie</label>
-                                                <input name="heure_sortie" type="text" class="form-control" id="heure_sortie" placeholder="Heure de sortie" required>
-                                            </div>
-
-                                        </div>
-
-
-
-
-                                 </div>
 
 
 
@@ -236,7 +207,7 @@
 
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-                                    <button type="submit" id="personnel_add_form_button" style="background: #00C8BF;color:white;" class="btn">Enregistrer</button>
+                                    <button type="submit" id="ecroue_add_form_button" style="background: #00C8BF;color:white;" class="btn">Enregistrer</button>
                                     </div>
                                 </form>
 
@@ -290,99 +261,58 @@
 
 <script>
 
+    $("#visite_ecroue_form_id").submit(function(e){
 
-getServices('#direction_visite');
+        e.preventDefault();
 
+        var formData = new FormData(this);
 
- function getServices($selector){
-
-        var direction_id = $($selector).val();
 
         $.ajax({
+         type: "POST",
+         url: '{{ route("visitesecrouesstore") }}',
+         data: formData,
+         processData: false,
+         contentType: false,
+         success:function(res){
 
-            url:'{{ route("visitespersonnelsservices") }}',
-            method:'GET',
-            data:{
+               if(res.status==200){
 
-                   id:direction_id,
+                 Swal.fire({
+                     position: 'center',
+                     icon: 'success',
+                     title: res.message,
+                     showConfirmButton: false,
+                     timer: 3000
+                   })
 
-            },
-            success:function(res){
+                   {{--  $("#visite_ecroue_form_id").reset();  --}}
 
-                 $('#service_visite').html(res);
+                   document.getElementById("visite_ecroue_form_id").reset();
 
-            }
-     });
- }
 
- $('#direction_visite').on('change',function(){
+               }else{
 
-          getServices($(this));
+
+
+
+                 Swal.fire({
+                     icon: 'error',
+                     title: 'Oops...',
+                     text: res.message.name,
+
+                   })
+
+                   {{--  $("#visite_ecroue_form_id").reset();  --}}
+                   document.getElementById("visite_ecroue_form_id").reset();
+
+
+               }
+         }
+     })
 
 
  });
-
-
-
-
-
-    $("#visite_personnel_form_id").submit(function(e){
-
-           e.preventDefault();
-
-           var formData = new FormData(this);
-
-
-           $.ajax({
-            type: "POST",
-            url: '{{ route("visitespersonnelsstore") }}',
-            data: formData,
-            processData: false,
-            contentType: false,
-            success:function(res){
-
-                  if(res.status==200){
-
-                    Swal.fire({
-                        position: 'center',
-                        icon: 'success',
-                        title: res.message,
-                        showConfirmButton: false,
-                        timer: 3000
-                      })
-
-
-                      {{--  $("#visite_personnel_form_id").reset();  --}}
-                      document.getElementById("visite_personnel_form_id").reset();
-
-
-
-                  }else{
-
-
-
-
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Oops...',
-                        text: res.message,
-
-                      })
-
-                      {{--  $("#visite_personnel_form_id").reset();  --}}
-                      document.getElementById("visite_personnel_form_id").reset();
-
-
-
-
-                  }
-            }
-        })
-
-
-    });
-
-
 
 
 </script>

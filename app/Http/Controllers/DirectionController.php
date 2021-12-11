@@ -20,6 +20,7 @@ class DirectionController extends Controller
      public function adddirection(Request $request){
 
 
+
         $validator = Validator::make($request->all(), [
             'name' => 'required|unique:directions|max:255',
         ]);

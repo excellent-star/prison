@@ -96,7 +96,7 @@
               <ul class="nav flex-column sub-menu">
 
                 <li class="nav-item"> <a class="nav-link" href="{{ route('visitespersonnels') }}">Enregistrer un visiteur </a></li>
-                <li class="nav-item"> <a class="nav-link" href="{{ route('directions') }}">Voir les visiteurs</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{ route('visitespersonnelsview') }}">Voir les visiteurs</a></li>
 
               </ul>
             </div>
@@ -111,7 +111,7 @@
             <div class="collapse" id="evenements">
               <ul class="nav flex-column sub-menu">
 
-                <li class="nav-item"> <a class="nav-link" href="{{ route('directions') }}">Enregistrer un evenement</a></li><li class="nav-item"> <a class="nav-link" href="{{ route('directions') }}">Voir les les evenements enregistrés</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{ route('event') }}">Enregistrer un evenement</a></li><li class="nav-item"> <a class="nav-link" href="{{ route('eventview') }}">Voir les les evenements enregistrés</a></li>
 
               </ul>
             </div>
@@ -126,8 +126,8 @@
             </a>
             <div class="collapse" id="visite2">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="{{ route('directions') }}">Enregistrer un visiteur </a></li>
-                <li class="nav-item"> <a class="nav-link" href="{{ route('directions') }}">Voir les visiteurs enregistrés</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{ route('visitesecroues') }}">Enregistrer un visiteur </a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{ route('visitesecrouesview') }}">Voir les visiteurs enregistrés</a></li>
 
               </ul>
             </div>
