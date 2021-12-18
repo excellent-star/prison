@@ -39,7 +39,7 @@ class VisiteController extends Controller
             // dd($services);
                   foreach($services as $service){
 
-                       $option1.='<option value="'.$service->id.'">'.$service->name.'</option>';
+                       $option1.='<option value="'.$service->id.'">'.$this->cut_string($service->name).'</option>';
                   }
 
                   $option2.='<option value="">pas de services pour cette direction</option>';
@@ -65,7 +65,7 @@ class VisiteController extends Controller
 
         $check = Profile::find($enregistreur->id);
 
-        if(!$check){
+        if($check===null){
 
 
             return response()->json([
@@ -181,7 +181,7 @@ class VisiteController extends Controller
 
 
 
-                     <td>'.$service->name.' </td>
+                     <td>'.$this->cut_string($service->name).' </td>
 
 
 
@@ -194,10 +194,10 @@ class VisiteController extends Controller
                            modifier
                            <i class="typcn typcn-edit btn-icon-append"></i>
                          </a>
-                         <button type="button" style="background: #FFD34D;color:white;" id="'.$visitor->id.'" data-toggle="modal" data-target="#editdirection" class="btn  btn-sm btn-icon-text mr-3 edit">
+                         <a href="/previewvisitor/'.$visitor->id.'" target="_blank" type="button" style="background: #FFD34D;color:white;" id="'.$visitor->id.'"  class="btn  btn-sm btn-icon-text mr-3 edit">
                            aperçu
                            <i class="typcn typcn-edit btn-icon-append"></i>
-                         </button>
+                         </a>
 
                        </div>
                      </td>
@@ -233,6 +233,24 @@ class VisiteController extends Controller
 
     $id = $request->session()->get('loggedUserId');
         $enregistreur = DB::table('enregistreurs')->where('user_id',$id)->first();
+
+
+    $check = Profile::find($enregistreur->id);
+
+        if($check===null){
+
+
+            return response()->json([
+
+                'status'=>400,
+                'message'=>'vous devez premièrement renseigner vos information'
+               ]);
+
+
+        }
+
+
+
 
                 $today = Carbon::today();
 
@@ -342,10 +360,10 @@ class VisiteController extends Controller
                        modifier
                        <i class="typcn typcn-edit btn-icon-append"></i>
                      </a>
-                     <button type="button" style="background: #FFD34D;color:white;" id="'.$visitor->id.'" data-toggle="modal" data-target="#editdirection" class="btn  btn-sm btn-icon-text mr-3 edit">
+                     <a href="/previewvisitor/'.$visitor->id.'" type="button" target="_blank" style="background: #FFD34D;color:white;" id="'.$visitor->id.'"  class="btn  btn-sm btn-icon-text mr-3 edit">
                        aperçu
                        <i class="typcn typcn-edit btn-icon-append"></i>
-                     </button>
+                     </a>
 
                    </div>
                  </td>
@@ -369,7 +387,60 @@ class VisiteController extends Controller
 
 
 
+   // this part is for both
 
+//    public function previewvisitor(Request $request,$id){
+
+//            $id = (int)$id;
+
+//              $visit = Visiteur::find($id);
+
+//              if($visit==null){
+
+//                 return redirect('/dashboard');
+
+//              }else{
+
+
+//                    return view('previewvisitor',compact('visit'));
+
+
+//              }
+
+//    }
+   // this part is for both
+
+
+   public function cut_string($string){
+
+    $array = str_split($string);
+
+    $number = -1;
+
+       foreach($array as $key => $val){
+
+                if($val=='|'){
+
+                    $number = $key;
+                }
+       }
+
+         $number+=1;
+
+       $result = substr($string,$number);
+
+      return $result;
 
 
 }
+
+
+
+
+
+
+
+
+
+
+}// end of class

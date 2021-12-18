@@ -113,10 +113,10 @@ class EventController extends Controller
                        modifier
                        <i class="typcn typcn-edit btn-icon-append"></i>
                      </a>
-                     <button type="button" style="background: #FFD34D;color:white;" id="'.$event->id.'" data-toggle="modal" data-target="#editdirection" class="btn  btn-sm btn-icon-text mr-3 edit">
+                     <a href="/previewevent/'.$event->id.'" target="_blank" style="background: #FFD34D;color:white;" id="'.$event->id.'"  class="btn  btn-sm btn-icon-text mr-3 edit">
                        aperçu
                        <i class="typcn typcn-edit btn-icon-append"></i>
-                     </button>
+                     </a>
 
                    </div>
                  </td>

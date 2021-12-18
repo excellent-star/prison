@@ -333,7 +333,7 @@ function fetchAllServices(){
                                         Swal.fire({
                                             icon: 'error',
                                             title: 'Oops...',
-                                            text: res.message.name,
+                                            text: res.message,
 
                                           })
 

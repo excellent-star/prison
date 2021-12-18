@@ -28,28 +28,45 @@ class ServiceController extends Controller
 
 
 
-        $validator = Validator::make($request->all(), [
-            'name' => 'required|unique:services|max:255',
-        ]);
+        // $validator = Validator::make($request->all(), [
+        //     'name' => 'required|unique:services|max:255',
+        // ]);
+
+        $direction = Direction::find($request->direction);
+
+        $name = $direction->name.'|'.$request->name;
+
+        $check   = DB::table('services')->where('name', $name)->first();
 
 
 
-        if($validator->fails()){
+        // if($validator->fails()){
+        if($check!=null){
 
 
-               return response()->json([
+            return response()->json([
 
                 'status'=>400,
-                'message'=>$validator->getMessageBag()
+                'message'=>'Ce service existe déjà dans la direction '.$direction->name
                ]);
+
+
+            //    return response()->json([
+
+            //     'status'=>400,
+            //     'message'=>$validator->getMessageBag()
+            //    ]);
 
 
         }else{
 
 
+
+
+
             $service = new Service();
 
-                $service->name = $request->name;
+                $service->name = $name;
                 $service->direction_id = $request->direction;
 
                 $service->save();
@@ -72,7 +89,7 @@ class ServiceController extends Controller
 
      public function fetch_all_services(){
 
-        $services = Service::orderBy('id', 'DESC')->get();;
+        $services = Service::orderBy('id', 'DESC')->get();
 
         $output = '';
 
@@ -100,7 +117,7 @@ class ServiceController extends Controller
 
                      $output.=' <tr>
 
-                     <td>'.$service->name.' </td>
+                     <td>'.$this->cut_string($service->name).' </td>
                      <td>'.$direction->name.' </td>
 
                      <td>
@@ -278,6 +295,34 @@ public function update_service(Request $request){
 
 
 }
+
+
+
+public function cut_string($string){
+
+    $array = str_split($string);
+
+    $number = -1;
+
+       foreach($array as $key => $val){
+
+                if($val=='|'){
+
+                    $number = $key;
+                }
+       }
+
+         $number+=1;
+
+       $result = substr($string,$number);
+
+      return $result;
+
+
+}
+
+
+
 
 
 

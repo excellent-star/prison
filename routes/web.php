@@ -9,6 +9,8 @@ use App\Http\Controllers\EnregistreurController;
 use App\Http\Controllers\VisiteController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\RandomController;
+use App\Http\Controllers\PreviewController;
 
 /*
 |--------------------------------------------------------------------------
@@ -179,6 +181,15 @@ Route::any('/eventstore', [EventController::class, 'eventstore'])->name('eventst
 Route::get('/fetch-all-events', [EventController::class, 'fetch_all_events'])->name('fetch_all_events');
 // thes routes are for visites ecrous
 
+
+
+
+// these routes are for updates
+
+Route::get('/previewvisitor/{id}', [PreviewController::class, 'previewvisitor'])->name('previewvisitor');
+Route::get('/previewevent/{id}', [PreviewController::class, 'previewevent'])->name('previewevent');
+
+// these routes are for updates
 
 
 

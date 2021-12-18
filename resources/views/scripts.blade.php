@@ -4,6 +4,7 @@
 
 {{--  <script src="{{ asset('js/data-table.js') }}"></script>  --}}
 <script src="{{ asset('js/jquery-3.6.0.js') }}"></script>
+{{--  <script src="{{ asset('myjs/jquery-1.4.4.min.js') }}"></script>  --}}
 
 
 
@@ -25,6 +26,8 @@
 
 <script src="{{ asset('myjs/datatables.min.js') }}"></script>
 <script src="{{ asset('myjs/sweetalert2.min.js') }}"></script>
+
+<script src="{{ asset('myjs/jquery.printPage.js') }}"></script>
 
 {{--  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.2.1/dist/sweetalert2.all.min.js"></script>  --}}
 
