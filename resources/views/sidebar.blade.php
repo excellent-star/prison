@@ -78,6 +78,29 @@
     }else if($display->type==1){
 
 
+        ?>
+
+
+
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#visite2" aria-expanded="false" aria-controls="ui-basic">
+              <i class="typcn typcn-home menu-icon"></i>
+              <span class="menu-title">Deplier</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="visite2">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="{{ route('commandantvisitpersoview') }}">Personnels </a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{ route('commandantvisitecroueview') }}">Ecroues </a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{ route('commandanteventview') }}">Evenement</a></li>
+
+              </ul>
+            </div>
+          </li>
+
+          <?php
+
+
 
     }else{
 

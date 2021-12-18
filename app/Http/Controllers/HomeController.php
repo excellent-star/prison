@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Enregistreur;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Visiteur;
+use App\Models\Commandant;
+use App\Models\Event;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Crypt;
 
@@ -33,8 +37,17 @@ class HomeController extends Controller
                 return back();
         }
 
-                return view('dashboard');
+
+             $number_of_visitors =Visiteur::get()->count();
+             $number_of_enregistreurs =Enregistreur::get()->count();
+             $number_of_commandants =Commandant::get()->count();
+             $number_of_events =Event::get()->count();
+
+
+                return view('dashboard',['number_of_visitors'=>$number_of_visitors,'number_of_enregistreurs'=>$number_of_enregistreurs,'number_of_commandants'=>$number_of_commandants,'number_of_events'=>$number_of_events]);
       }
+
+
 
       public function logout(Request $request){
 

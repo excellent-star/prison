@@ -120,6 +120,11 @@ class VisiteController extends Controller
                 return view('visitespersonnelsview');
       }
 
+      public function commandantvisitpersoview(){
+
+              return view('commandantvisitpersoview');
+      }
+
       public function fetch_all_personnels_visitors(Request $request){
 
 
@@ -296,6 +301,11 @@ class VisiteController extends Controller
          return view('visitesecrouesview');
    }
 
+   public function commandantvisitecroueview(){
+
+          return view('commandantvisitecroueview');
+   }
+
 
    public function fetch_all_ecroues_visitors(Request $request){
 
@@ -373,6 +383,8 @@ class VisiteController extends Controller
          $output.= '</tbody>
          </table>';
 
+        //  dd($output);
+
          echo $output;
 
     }else{
@@ -433,6 +445,199 @@ class VisiteController extends Controller
 
 
 }
+
+
+
+
+
+
+public function commandantfetch_all_ecroues_visitors(Request $request){
+
+
+
+
+    // $id = $request->session()->get('loggedUserId');
+    // $enregistreur = DB::table('enregistreurs')->where('user_id',$id)->first();
+
+    // $visitors = DB::table('visites')->where('enre_id',$id)->get();
+
+
+
+
+    $visitors = Visiteur::orderBy('id', 'DESC')->where(['type'=>1])->get();
+
+
+
+
+
+    $output = '';
+
+    if($visitors->count() > 0){
+
+
+         $output.='<table  id="myTable" class="table table-striped project-orders-table">
+         <thead>
+           <tr>
+
+             <th>Nom visiteur</th>
+             <th>Prénom Visiteur</th>
+
+             <th>Nom visité</th>
+             <th>Prénom visité</th>
+
+
+
+
+
+             <th>Actions</th>
+           </tr>
+         </thead>
+         <tbody>';
+
+         foreach($visitors as $visitor){
+
+
+            // $service = DB::table('services')->where('id',$visitor->service_id)->first();
+
+            // $direction = DB::table('directions')->where('id',$service->direction_id)->first();
+
+
+
+                 $output.=' <tr>
+
+                 <td>'.$visitor->nom_visiteur.' </td>
+                 <td>'.$visitor->prenom_visiteur.' </td>
+                 <td>'.$visitor->nom_visite.' </td>
+
+                 <td>'.$visitor->prenom_visite.' </td>
+                 <td>
+                   <div class="d-flex align-items-center">
+
+                     <a href="/previewvisitor/'.$visitor->id.'" type="button" target="_blank" style="background: #FFD34D;color:white;" id="'.$visitor->id.'"  class="btn  btn-sm btn-icon-text mr-3 edit">
+                       aperçu
+                       <i class="typcn typcn-edit btn-icon-append"></i>
+                     </a>
+
+                   </div>
+                 </td>
+               </tr>';
+         }
+
+         $output.= '</tbody>
+         </table>';
+
+        //  dd($output);
+
+         echo $output;
+
+    }else{
+
+             echo '<h1 class="text-center text-secondary my-5">Aucun Visiteur enregistré !</h1>';
+    }
+
+
+
+   }
+
+
+
+   public function commandantfetch_all_personnels_visitors(Request $request){
+
+
+
+    // $id = $request->session()->get('loggedUserId');
+    // $enregistreur = DB::table('enregistreurs')->where('user_id',$id)->first();
+
+    // $visitors = DB::table('visites')->where('enre_id',$id)->get();
+
+
+
+
+    $visitors = Visiteur::orderBy('id', 'DESC')->where(['type'=>0])->get();
+
+
+
+    $output = '';
+
+    if($visitors->count() > 0){
+
+
+         $output.='<table  id="myTable" class="table table-striped project-orders-table">
+         <thead>
+           <tr>
+
+             <th>Nom visiteur</th>
+             <th>Prénom Visiteur</th>
+
+             <th>Nom visité</th>
+             <th>Prénom visité</th>
+
+             <th>Direction visité</th>
+             <th>Service visité</th>
+
+
+
+             <th>Actions</th>
+           </tr>
+         </thead>
+         <tbody>';
+
+         foreach($visitors as $visitor){
+
+
+            $service = DB::table('services')->where('id',$visitor->service_id)->first();
+
+            $direction = DB::table('directions')->where('id',$service->direction_id)->first();
+
+
+
+                 $output.=' <tr>
+
+                 <td>'.$visitor->nom_visiteur.' </td>
+                 <td>'.$visitor->prenom_visiteur.' </td>
+                 <td>'.$visitor->nom_visite.' </td>
+
+                 <td>'.$visitor->prenom_visite.' </td>
+                 <td>'.$direction->name.' </td>
+
+
+
+                 <td>'.$this->cut_string($service->name).' </td>
+
+
+
+
+
+
+                 <td>
+                   <div class="d-flex align-items-center">
+                     <a  href="#" style="background: #00C8BF;color:white;" id="'.$visitor->id.'"  class="btn  btn-sm btn-icon-text mr-3 edit">
+                       modifier
+                       <i class="typcn typcn-edit btn-icon-append"></i>
+                     </a>
+                     <a href="/previewvisitor/'.$visitor->id.'" target="_blank" type="button" style="background: #FFD34D;color:white;" id="'.$visitor->id.'"  class="btn  btn-sm btn-icon-text mr-3 edit">
+                       aperçu
+                       <i class="typcn typcn-edit btn-icon-append"></i>
+                     </a>
+
+                   </div>
+                 </td>
+               </tr>';
+         }
+
+         $output.= '</tbody>
+         </table>';
+
+         echo $output;
+
+    }else{
+
+             echo '<h1 class="text-center text-secondary my-5">Aucun Visiteur enregistré !</h1>';
+    }
+
+
+
+  }
 
 
 

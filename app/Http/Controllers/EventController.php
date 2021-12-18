@@ -51,8 +51,13 @@ class EventController extends Controller
            return view('eventview');
       }
 
+      public function commandanteventview(){
 
-      public function  fetch_all_events(Request $request){
+        return view('commandanteventview');
+   }
+
+
+ public function  fetch_all_events(Request $request){
 
 
 
@@ -141,4 +146,99 @@ class EventController extends Controller
 
 
 
-}
+      public function  commandantfetch_all_events(Request $request){
+
+
+
+
+        // $id = $request->session()->get('loggedUserId');
+        // $enregistreur = DB::table('enregistreurs')->where('user_id',$id)->first();
+
+        // $visitors = DB::table('visites')->where('enre_id',$id)->get();
+
+
+
+
+        $events = Event::orderBy('id', 'DESC')->get();
+
+
+
+        $output = '';
+
+        if($events->count() > 0){
+
+
+             $output.='<table  id="myTable" class="table table-striped project-orders-table">
+             <thead>
+               <tr>
+
+                 <th>Titre</th>
+                 <th>date</th>
+
+                 <th>Heure</th>
+
+
+
+
+
+
+                 <th>Actions</th>
+               </tr>
+             </thead>
+             <tbody>';
+
+             foreach($events as $event){
+
+
+                // $service = DB::table('services')->where('id',$visitor->service_id)->first();
+
+                // $direction = DB::table('directions')->where('id',$service->direction_id)->first();
+
+
+
+                     $output.=' <tr>
+
+                     <td>'.$event->title.' </td>
+                     <td>'.$event->event_date.' </td>
+                     <td>'.$event->event_time.' </td>
+                     <td>
+                       <div class="d-flex align-items-center">
+                         <a  href="#" style="background: #00C8BF;color:white;" id="'.$event->id.'"  class="btn  btn-sm btn-icon-text mr-3 edit">
+                           modifier
+                           <i class="typcn typcn-edit btn-icon-append"></i>
+                         </a>
+                         <a href="/previewevent/'.$event->id.'" target="_blank" style="background: #FFD34D;color:white;" id="'.$event->id.'"  class="btn  btn-sm btn-icon-text mr-3 edit">
+                           aperçu
+                           <i class="typcn typcn-edit btn-icon-append"></i>
+                         </a>
+
+                       </div>
+                     </td>
+                   </tr>';
+             }
+
+             $output.= '</tbody>
+             </table>';
+
+             echo $output;
+
+        }else{
+
+                 echo '<h1 class="text-center text-secondary my-5">Aucun Evenement enregistré !</h1>';
+        }
+
+
+
+          }
+
+
+
+
+
+
+
+
+
+
+
+}// end of class

@@ -49,18 +49,31 @@
     <ul class="navbar-nav navbar-nav-right">
       <li class="nav-item nav-date dropdown">
         <a class="nav-link d-flex justify-content-center align-items-center" href="javascript:;">
-          <h6 class="date mb-0">Today : Mar 23</h6>
+          <h6 class="date mb-0">Aujourd'hui : {{ date('d-m-Y') }}</h6>
           <i class="typcn typcn-calendar"></i>
         </a>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link count-indicator dropdown-toggle d-flex justify-content-center align-items-center" id="messageDropdown" href="#" data-toggle="dropdown">
           <i class="typcn typcn-cog-outline mx-0"></i>
-          <span class="count"></span>
+          {{--  <span class="count"></span>  --}}
         </a>
         <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="messageDropdown">
-          <p class="mb-0 font-weight-normal float-left dropdown-header">Messages</p>
-          <a class="dropdown-item preview-item">
+          {{--  <p class="mb-0 font-weight-normal float-left dropdown-header">Messages</p>  --}}
+          @if($user->type==2)
+
+            <a href="{{ route('profiles') }}" class="dropdown-item">
+                <i class="typcn typcn-cog-outline text-primary"></i>
+                  profile
+            </a>
+
+            @endif
+
+          <a href="/logout" class="dropdown-item">
+            <i class="typcn typcn-eject text-primary"></i>
+            Logout
+          </a>
+          {{--  <a class="dropdown-item preview-item">
             <div class="preview-thumbnail">
                 <img src="{{ asset('images/faces/face4.jpg') }}" alt="image" class="profile-pic">
             </div>
@@ -95,17 +108,17 @@
                 Upcoming board meeting
               </p>
             </div>
-          </a>
+          </a>  --}}
         </div>
       </li>
       <li class="nav-item dropdown mr-0">
         <a class="nav-link count-indicator dropdown-toggle d-flex align-items-center justify-content-center" id="notificationDropdown" href="#" data-toggle="dropdown">
           <i class="typcn typcn-bell mx-0"></i>
-          <span class="count"></span>
+          {{--  <span class="count"></span>  --}}
         </a>
         <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
           <p class="mb-0 font-weight-normal float-left dropdown-header">Notifications</p>
-          <a class="dropdown-item preview-item">
+          {{--  <a class="dropdown-item preview-item">
             <div class="preview-thumbnail">
               <div class="preview-icon bg-success">
                 <i class="typcn typcn-info mx-0"></i>
@@ -143,7 +156,7 @@
                 2 days ago
               </p>
             </div>
-          </a>
+          </a>  --}}
         </div>
       </li>
     </ul>

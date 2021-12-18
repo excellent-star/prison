@@ -35,6 +35,16 @@ Route::middleware(['CheckIfUserLogged'])->group(function () {
     //
     Route::get('/', [HomeController::class, 'index'])->name('index');
     Route::get('/dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
+
+
+        // these routes are for preview
+
+Route::get('/previewvisitor/{id}', [PreviewController::class, 'previewvisitor'])->name('previewvisitor');
+Route::get('/previewevent/{id}', [PreviewController::class, 'previewevent'])->name('previewevent');
+// these routes are for preview
+
+
+
 });
 
 
@@ -119,6 +129,11 @@ Route::any('/delete-enregistreur', [EnregistreurController::class, 'delete_enreg
 
 
 
+
+
+
+
+
 });
 
 
@@ -186,8 +201,7 @@ Route::get('/fetch-all-events', [EventController::class, 'fetch_all_events'])->n
 
 // these routes are for updates
 
-Route::get('/previewvisitor/{id}', [PreviewController::class, 'previewvisitor'])->name('previewvisitor');
-Route::get('/previewevent/{id}', [PreviewController::class, 'previewevent'])->name('previewevent');
+
 
 // these routes are for updates
 
@@ -198,6 +212,23 @@ Route::get('/previewevent/{id}', [PreviewController::class, 'previewevent'])->na
 
 
 
+
+
+});
+
+
+Route::middleware(['CheckIfCommandant'])->group(function () {
+
+
+    Route::get('/commandantfetch-all-ecroues-visitors', [VisiteController::class, 'commandantfetch_all_ecroues_visitors'])->name('commandantfetch_all_ecroues_visitors');
+
+    Route::get('/commandantfetch-all-personnels-visitors', [VisiteController::class, 'commandantfetch_all_personnels_visitors'])->name('commandantfetch_all_personnels_visitors');
+
+    Route::get('/commandantfetch-all-events', [EventController::class, 'commandantfetch_all_events'])->name('commandantfetch_all_events');
+
+    Route::get('/commandanteventview', [EventController::class, 'commandanteventview'])->name('commandanteventview');
+    Route::get('/commandantvisitpersoview', [VisiteController::class, 'commandantvisitpersoview'])->name('commandantvisitpersoview');
+    Route::get('/commandantvisitecroueview', [VisiteController::class, 'commandantvisitecroueview'])->name('commandantvisitecroueview');
 
 
 });
