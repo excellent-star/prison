@@ -44,6 +44,12 @@
 
                 <div  class="col-md-12">
                   <div class="card">
+
+                    <form id="form_to_submit">
+
+                        @csrf
+
+
                      <div style="margin:10px;">
                              <div style="float: left"></div>
                              {{--  <div style="float: right"><button style="background: #00C8BF;color:white;" data-toggle="modal" data-target="#adddirection" type="button" class="btn btn-sm">Ajouter une direction</button></div>  --}}
@@ -91,6 +97,17 @@
                         </tbody>
                       </table>  --}}
                     </div>
+
+
+
+                    <div class="card-footer">
+                        <button type="submit" id="printbutton" class="btn btn-primary">Imprimer la selection</button>
+                 </div>
+
+             </form>
+
+
+
                   </div>
                 </div>
               </div>
@@ -134,6 +151,11 @@
 
 
 
+$(function(){
+
+
+
+
 
     fetchAllErouesvisitors();
 
@@ -159,6 +181,102 @@ function fetchAllErouesvisitors(){
               }
        });
 }
+
+
+
+
+
+
+
+
+
+
+    $("#my_wrapper_table_div").on('click','#checkAll',function(){
+
+
+
+
+
+        if($(this).is(":checked")){
+
+                    $(".checkItem").prop('checked',true);
+        }else{
+
+               $(".checkItem").prop('checked',false);
+        }
+
+
+
+    });
+
+
+    $('.card').on('submit','#form_to_submit',function(e){
+
+
+           e.preventDefault();
+
+
+               if(!$('.checkItem').is(":checked")){
+
+
+
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Vous devez au moins cocher une case!',
+
+                  })
+
+
+
+               }else{
+
+
+                   var ids = $("#form_to_submit").serialize();
+
+
+                   $.ajax({
+
+
+                        url:'{{ route('commandantbeforeprintpersonnels') }}',
+                        method:"GET",
+                        dataType:"JSON",
+                        data:ids,
+                        success:function(res){
+
+
+                                    window.open("/commandantprintpersonnels/"+res.ids);
+
+
+                        }
+
+
+
+                   });
+
+
+
+
+
+               }
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+});
+
+
+
+
 
 
 

@@ -171,11 +171,13 @@ class EventController extends Controller
              $output.='<table  id="myTable" class="table table-striped project-orders-table">
              <thead>
                <tr>
-
+                 <th><input type="checkbox" id="checkAll"></th>
                  <th>Titre</th>
-                 <th>date</th>
+                 <th>date de l\' évenement</th>
 
                  <th>Heure</th>
+
+                 <th>Date de l\'enregistrement</th>
 
 
 
@@ -197,10 +199,11 @@ class EventController extends Controller
 
 
                      $output.=' <tr>
-
+                     <td><input type="checkbox" name="id[]" value="'.$event->id.'" class="checkItem" ></td>
                      <td>'.$event->title.' </td>
-                     <td>'.$event->event_date.' </td>
+                     <td>'.date('d-m-Y', strtotime($event->event_date)).' </td>
                      <td>'.$event->event_time.' </td>
+                     <td>'.date('d-m-Y', strtotime($event->updated_at)).'</td>
                      <td>
                        <div class="d-flex align-items-center">
                          <a  href="#" style="background: #00C8BF;color:white;" id="'.$event->id.'"  class="btn  btn-sm btn-icon-text mr-3 edit">

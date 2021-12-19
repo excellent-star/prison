@@ -120,6 +120,66 @@ class PreviewController extends Controller
 
 
 
+
+
+     public function commandantbeforeprintpersonnels(Request $request){
+
+
+                $ids = $_GET['id'];
+
+
+
+                $new_ids ='';
+
+                 foreach($ids as $id){
+
+                     $new_ids .=$id.'-';
+                 }
+
+                 $new_ids = substr_replace($new_ids ,"",-1);
+
+                 return response()->json([
+
+                    'status'=>200,
+                    'ids'=>$new_ids
+                   ]);
+
+
+     }
+
+
+     public function commandantprintpersonnels(Request $request,$ids){
+                   return view('commandantprintpersonnels',['ids'=>$ids]);
+     }
+
+
+
+
+     public function commandantprintevent(Request $request,$ids){
+        return view('commandantprintevent',['ids'=>$ids]);
+      }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+         // cut_string function
+
+
+
+
          public function cut_string($string){
 
             $array = str_split($string);

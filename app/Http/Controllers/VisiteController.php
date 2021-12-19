@@ -479,11 +479,13 @@ public function commandantfetch_all_ecroues_visitors(Request $request){
          <thead>
            <tr>
 
+           <th><input type="checkbox" id="checkAll"></th>
              <th>Nom visiteur</th>
              <th>Prénom Visiteur</th>
 
              <th>Nom visité</th>
              <th>Prénom visité</th>
+             <th>Date</th>
 
 
 
@@ -505,11 +507,13 @@ public function commandantfetch_all_ecroues_visitors(Request $request){
 
                  $output.=' <tr>
 
+                 <td><input type="checkbox" name="id[]" value="'.$visitor->id.'" class="checkItem" ></td>
                  <td>'.$visitor->nom_visiteur.' </td>
                  <td>'.$visitor->prenom_visiteur.' </td>
                  <td>'.$visitor->nom_visite.' </td>
 
                  <td>'.$visitor->prenom_visite.' </td>
+                 <td>'.date('d-m-Y', strtotime($visitor->updated_at)).'</td>
                  <td>
                    <div class="d-flex align-items-center">
 
@@ -565,7 +569,7 @@ public function commandantfetch_all_ecroues_visitors(Request $request){
          $output.='<table  id="myTable" class="table table-striped project-orders-table">
          <thead>
            <tr>
-
+            <th><input type="checkbox" id="checkAll"></th>
              <th>Nom visiteur</th>
              <th>Prénom Visiteur</th>
 
@@ -574,6 +578,7 @@ public function commandantfetch_all_ecroues_visitors(Request $request){
 
              <th>Direction visité</th>
              <th>Service visité</th>
+             <th>Date</th>
 
 
 
@@ -593,6 +598,7 @@ public function commandantfetch_all_ecroues_visitors(Request $request){
 
                  $output.=' <tr>
 
+                 <td><input type="checkbox" name="id[]" value="'.$visitor->id.'" class="checkItem" ></td>
                  <td>'.$visitor->nom_visiteur.' </td>
                  <td>'.$visitor->prenom_visiteur.' </td>
                  <td>'.$visitor->nom_visite.' </td>
@@ -603,6 +609,7 @@ public function commandantfetch_all_ecroues_visitors(Request $request){
 
 
                  <td>'.$this->cut_string($service->name).' </td>
+                 <td>'.date('d-m-Y', strtotime($visitor->updated_at)).'</td>
 
 
 

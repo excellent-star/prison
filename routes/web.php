@@ -231,6 +231,17 @@ Route::middleware(['CheckIfCommandant'])->group(function () {
     Route::get('/commandantvisitecroueview', [VisiteController::class, 'commandantvisitecroueview'])->name('commandantvisitecroueview');
 
 
+
+
+    Route::get('/commandantbeforeprintpersonnels', [PreviewController::class, 'commandantbeforeprintpersonnels'])->name('commandantbeforeprintpersonnels');
+
+
+    Route::get('/commandantprintpersonnels/{ids}', [PreviewController::class, 'commandantprintpersonnels'])->name('commandantprintpersonnels');
+    Route::get('/commandantprintevent/{ids}', [PreviewController::class, 'commandantprintevent'])->name('commandantprintevent');
+
+
+
+
 });
 
 
