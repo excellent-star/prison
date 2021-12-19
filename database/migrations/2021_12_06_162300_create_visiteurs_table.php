@@ -36,6 +36,7 @@ class CreateVisiteursTable extends Migration
             $table->string('quartier_ecroue')->nullable();
             $table->string('heure_entree');
             $table->string('heure_sortie');
+            $table->integer('number_of_time_updated');
             $table->timestamps();
         });
     }

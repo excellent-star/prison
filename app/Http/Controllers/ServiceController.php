@@ -198,55 +198,88 @@ public function update_service(Request $request){
 
 
 
-    $name = $request->name;
+
+
+
+
+    // $name = $request->name;
     $id = $request->service_id;
 
     $direction_id=$request->direction_id;
 
     $service = Service::find($id);
 
+    $direction = Direction::find($direction_id);
+    $name = $direction->name.'|'.$request->name;
 
-    $check  = DB::table('services')->where('name', $name)->first();
+
+    $check  = DB::table('services')->where('name','=',$name)->where('direction_id','=',$direction_id)->first();
 
     // dd($check);
 
+
     if($check!==null){
 
-           if($check->name==$service->name){
+                     return response()->json([
 
-              $service->update(['direction_id'=>$direction_id]);
-
-              return response()->json([
-
-                'status'=>200,
-                'message'=>'Service mise à jour avec succès !'
-               ]);
-
-
-           }else{
-
-            $service->update(['direction_id'=>$direction_id]);
-            return response()->json([
-
-              'status'=>400,
-              'message'=>'Ce nom de service est déjà utilisé, la direcction est parcontre modifié'
-             ]);
-
-
-           }
+                        'status'=>400,
+                        'message'=>'Ce service existe déjà dans cette direction !'
+                       ]);
     }else{
+
 
 
         $service->update(['direction_id'=>$direction_id,'name'=>$name]);
 
+
         return response()->json([
 
-            'status'=>200,
-            'message'=>'Service mise à jour avec succès'
-           ]);
+                        'status'=>200,
+                        'message'=>'Service mise à jour avec succès !'
+                        ]);
 
 
     }
+
+    // dd($check);
+
+    // if($check!==null){
+
+    //        if($check->name==$service->name){
+
+    //           $service->update(['direction_id'=>$direction_id]);
+
+    //           return response()->json([
+
+    //             'status'=>200,
+    //             'message'=>'Service mise à jour avec succès !'
+    //            ]);
+
+
+    //        }else{
+
+    //         $service->update(['direction_id'=>$direction_id]);
+    //         return response()->json([
+
+    //           'status'=>400,
+    //           'message'=>'Ce nom de service est déjà utilisé, la direcction est parcontre modifié'
+    //          ]);
+
+
+    //        }
+    // }else{
+
+
+    //     $service->update(['direction_id'=>$direction_id,'name'=>$name]);
+
+    //     return response()->json([
+
+    //         'status'=>200,
+    //         'message'=>'Service mise à jour avec succès'
+    //        ]);
+
+
+    // }
 
 
 
@@ -261,16 +294,6 @@ public function update_service(Request $request){
 
     //     $service->update(['direction_id'=>$direction_id,'name'=>$name]);
     // }
-
-
-
-
-
-
-
-
-
-
 
 
 

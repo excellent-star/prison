@@ -67,7 +67,7 @@
 
                                             <p><b>Nom</b>:...... {{ $visite->nom_visite }}  {{ $visite->prenom_visite }}</p>
                                             @if($visite->type==1)
-                                            <p><b>Quartier</b>:...... {{ $visite->quartier_ecroue }} B</p>
+                                            <p><b>Quartier</b>:...... {{ $visite->quartier_ecroue }}</p>
                                             @endif
                                             @if($visite->type==0)
                                                 <p><b>Grade</b>:...... {{ $visite->grade_visite }}</p>

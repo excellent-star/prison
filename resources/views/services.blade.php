@@ -370,9 +370,10 @@ function fetchAllServices(){
                        },
                        success:function(res){
 
+                            var former_name = res[0].name;
 
-
-                            $("#edit_name").val(res[0].name);
+                            var new_name = former_name.split("|").pop();
+                            $("#edit_name").val(new_name);
                             $("#update_id").val(res[0].id);
                             $("#first_option").text(res[1].name);
                             $("#first_option").attr('value',res[1].id);

@@ -172,6 +172,15 @@ Route::any('/visitespersonnelsstore', [VisiteController::class, 'visitespersonne
 Route::get('/visitespersonnelsservices', [VisiteController::class, 'visitespersonnelsservices'])->name('visitespersonnelsservices');
 Route::get('/fetch-all-personnels-visitors', [VisiteController::class, 'fetch_all_personnels_visitors'])->name('fetch_all_personnels_visitors');
 
+Route::get('/visitespersonnelsupdate/{id}', [VisiteController::class, 'visitespersonnelsupdate'])->name('visitespersonnelsupdate');
+
+Route::post('visitespersonnelsupdaterun', [VisiteController::class, 'visitespersonnelsupdaterun'])->name('visitespersonnelsupdaterun');
+
+
+
+
+
+
 
 // thes routes are for visites personnels
 
@@ -185,6 +194,11 @@ Route::any('/visitesecrouesstore', [VisiteController::class, 'visitesecrouesstor
 
 // Route::get('/visitesecrouesservices', [VisiteController::class, 'visitesecrouesservices'])->name('visitesecrouesservices');
 Route::get('/fetch-all-ecroues-visitors', [VisiteController::class, 'fetch_all_ecroues_visitors'])->name('fetch_all_ecroues_visitors');
+
+
+Route::get('/visitesecrouesupdate/{id}', [VisiteController::class, 'visitesecrouesupdate'])->name('visitesecrouesupdate');
+
+Route::post('visitesecrouesupdaterun', [VisiteController::class, 'visitesecrouesupdaterun'])->name('visitesecrouesupdaterun');
 // thes routes are for visites ecrous
 
 
@@ -194,6 +208,16 @@ Route::get('/event', [EventController::class, 'event'])->name('event');
 Route::get('/eventview', [EventController::class, 'eventview'])->name('eventview');
 Route::any('/eventstore', [EventController::class, 'eventstore'])->name('eventstore');
 Route::get('/fetch-all-events', [EventController::class, 'fetch_all_events'])->name('fetch_all_events');
+
+
+Route::get('/eventupdate/{id}', [EventController::class, 'eventupdate'])->name('eventupdate');
+
+
+Route::post('/eventupdaterun', [EventController::class, 'eventupdaterun'])->name('eventupdaterun');
+
+
+
+
 // thes routes are for visites ecrous
 
 

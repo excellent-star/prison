@@ -26,6 +26,45 @@ class VisiteController extends Controller
             return view('visitespersonnels',compact('directions'));
       }
 
+      public function visitespersonnelsupdate(Request $request,$id){
+
+
+                        $visites = Visiteur::find($id);
+
+                        if($visites!==null){
+
+                            // dd($visites->enregistreur_id);
+
+                            $directions = Direction::all();
+                            return view('visitespersonnelsupdate',['directions'=>$directions,'visites'=>$visites]);
+
+                        }else{
+
+                              return back();
+                        }
+
+      }
+
+
+      public function visitespersonnelsupdaterun(Request $request){
+
+
+      $visite = Visiteur::find($request->id);
+
+// quartier_ecroue
+
+      $visite->update(['service_id'=>$request->service_id,'nom_visiteur'=>$request->nom_visiteur,'prenom_visiteur'=>$request->prenom_visiteur,'contact_visiteur'=>$request->contact_visiteur,'quartier_visiteur'=>$request->quartier_visiteur,'lien_avec_visite'=>$request->lien_avec_visite,'numero_piece_visiteur'=>$request->numero_piece_visiteur,'type_piece'=>$request->type_piece,'fonction_visteur'=>$request->fonction_visteur,'nationalite_visiteur'=>$request->nationalite_visiteur,'nom_visite'=>$request->nom_visite,'prenom_visite'=>$request->prenom_visite,'grade_visite'=>$request->grade_visite,'heure_entree'=>$request->heure_entree,'heure_sortie'=>$request->heure_sortie]);
+
+
+        return response()->json([
+
+            'status'=>200,
+            'message'=>'les informations sont modifiées et  sauvegardées'
+           ]);
+
+
+      }
+
 
       public function visitespersonnelsservices(Request $request){
 
@@ -195,7 +234,7 @@ class VisiteController extends Controller
 
                      <td>
                        <div class="d-flex align-items-center">
-                         <a  href="#" style="background: #00C8BF;color:white;" id="'.$visitor->id.'"  class="btn  btn-sm btn-icon-text mr-3 edit">
+                         <a  href="/visitespersonnelsupdate/'.$visitor->id.'" style="background: #00C8BF;color:white;" id="'.$visitor->id.'"  class="btn  btn-sm btn-icon-text mr-3 edit">
                            modifier
                            <i class="typcn typcn-edit btn-icon-append"></i>
                          </a>
@@ -232,6 +271,50 @@ class VisiteController extends Controller
 
         return view('visitesecroues');
    }
+
+   public function visitesecrouesupdate(Request $request,$id){
+
+    $visites = Visiteur::find($id);
+
+    if($visites!==null){
+
+        // dd($visites->enregistreur_id);
+
+        // $directions = Direction::all();
+        return view('visitesecrouesupdate',['visites'=>$visites]);
+
+    }else{
+
+          return back();
+    }
+
+    // return view('visitesecrouesupdate');
+}
+
+
+
+public function visitesecrouesupdaterun(Request $request){
+
+
+    $visite = Visiteur::find($request->id);
+
+    // quartier_ecroue
+
+          $visite->update(['nom_visiteur'=>$request->nom_visiteur,'prenom_visiteur'=>$request->prenom_visiteur,'contact_visiteur'=>$request->contact_visiteur,'quartier_visiteur'=>$request->quartier_visiteur,'lien_avec_visite'=>$request->lien_avec_visite,'numero_piece_visiteur'=>$request->numero_piece_visiteur,'type_piece'=>$request->type_piece,'fonction_visteur'=>$request->fonction_visteur,'nationalite_visiteur'=>$request->nationalite_visiteur,'nom_visite'=>$request->nom_visite,'prenom_visite'=>$request->prenom_visite,'quartier_ecroue'=>$request->quartier_ecroue,'heure_entree'=>$request->heure_entree,'heure_sortie'=>$request->heure_sortie]);
+
+
+            return response()->json([
+
+                'status'=>200,
+                'message'=>'les informations sont modifiées et  sauvegardées'
+               ]);
+
+
+
+}
+
+
+
 
    public function visitesecrouesstore(Request $request){
 
@@ -366,7 +449,7 @@ class VisiteController extends Controller
                  <td>'.$visitor->prenom_visite.' </td>
                  <td>
                    <div class="d-flex align-items-center">
-                     <a  href="#" style="background: #00C8BF;color:white;" id="'.$visitor->id.'"  class="btn  btn-sm btn-icon-text mr-3 edit">
+                     <a  href="/visitesecrouesupdate/'.$visitor->id.'" style="background: #00C8BF;color:white;" id="'.$visitor->id.'"  class="btn  btn-sm btn-icon-text mr-3 edit">
                        modifier
                        <i class="typcn typcn-edit btn-icon-append"></i>
                      </a>

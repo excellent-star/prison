@@ -15,7 +15,8 @@ class Event extends Model
         'title',
         'event_date',
         'event_time',
-        'description'
+        'description',
+        'number_of_time_updated',
 
 
 

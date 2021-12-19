@@ -18,6 +18,45 @@ class EventController extends Controller
            return view('event');
       }
 
+      public function eventupdate(Request $request,$id){
+
+
+                    $event = Event::find($id);
+
+                if($event!==null){
+
+                    // dd($visites->enregistreur_id);
+
+                    // $directions = Direction::all();
+                    return view('eventupdate',['event'=>$event]);
+
+                }else{
+
+                    return back();
+                }
+
+
+
+      }
+
+      public function eventupdaterun(Request $request){
+
+        $event = Event::find($request->id);
+
+        // dd($event);
+
+        // quartier_ecroue
+
+              $event->update(['title'=>$request->title,'event_date'=>$request->event_date,'event_time'=>$request->event_time,'description'=>$request->description]);
+
+
+                return response()->json([
+
+                    'status'=>200,
+                    'message'=>'les informations sont modifiées et  sauvegardées'
+                   ]);
+      }
+
 
       public function eventstore(Request $request){
 
@@ -114,7 +153,7 @@ class EventController extends Controller
                  <td>'.$event->event_time.' </td>
                  <td>
                    <div class="d-flex align-items-center">
-                     <a  href="#" style="background: #00C8BF;color:white;" id="'.$event->id.'"  class="btn  btn-sm btn-icon-text mr-3 edit">
+                     <a  href="/eventupdate/'.$event->id.'" style="background: #00C8BF;color:white;" id="'.$event->id.'"  class="btn  btn-sm btn-icon-text mr-3 edit">
                        modifier
                        <i class="typcn typcn-edit btn-icon-append"></i>
                      </a>

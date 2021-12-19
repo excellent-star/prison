@@ -31,7 +31,8 @@ class Visiteur extends Model
         'grade_visite',
         'quartier_ecroue',
         'heure_entree',
-        'heure_sortie'
+        'heure_sortie',
+        'number_of_time_updated',
 
 
 

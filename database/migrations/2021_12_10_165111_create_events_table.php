@@ -21,6 +21,7 @@ class CreateEventsTable extends Migration
             $table->date('event_date');
             $table->string('event_time');
             $table->longText('description');
+            $table->integer('number_of_time_updated');
             $table->timestamps();
         });
     }
