@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class checkIfCommandant
+class CheckIfCommandant
 {
     /**
      * Handle an incoming request.

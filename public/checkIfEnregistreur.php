@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class CheckIfEnregistreur
+class checkIfEnregistreur
 {
     /**
      * Handle an incoming request.
